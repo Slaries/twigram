@@ -1,0 +1,26 @@
+<h1>Add you best Photo!</h1>
+<%#= render 'shared/errors' %>
+<%#= render 'form' %>
+
+<%= form_for [@user, @post] do |form| %>
+
+  <div class="field">
+    <%= form.label :content, 'Content' %>
+    <%= form.text_field :content, :size=>"30", :maxlength=>"100" %><br/>
+  </div>
+  <!--  <div class="field">-->
+  <%#= form.hidden_field :image, value: @post.cached_image_data %>
+  <%#= form.file_field :image, value: @post.cached_image_data%>
+  <!--  </div><br/>-->
+  <%# if @post.image_data? %>
+
+  <!--    <%#= image_tag @post.image_url, width: '300' %><br/>-->
+  <!--        Remove attachment: <%##= form.check_box :remove_image %>-->
+  <%# end %>
+
+  <%= form.text_field :user_id, value: current_user.id, class:'d-none' %>
+  <div><br>
+    <%= form.submit 'Save Post', class: 'btn btn-primary' %>
+  </div>
+
+<%end%>
