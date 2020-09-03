@@ -1,3 +1,105 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.profile{
+  }
+  img {
+    width: 100%;
+    border-radius: 30%;
+  }
+
+  .user-info-box{
+    display: flex;
+    .username{
+      font-size: 20px;
+      line-height: 40px;
+      font-weight: 200;
+    }
+    .btn-primary {
+      width: 120px;
+      height: 20px;
+      margin: 10px 20px 0;
+      line-height: 5px;
+      font-size: 10px;
+      font-weight: 200;
+    }
+  }
+
+  .posts-block {
+    ul {
+      padding-left: 0;
+      li {
+        display: inline;
+        padding-right: 20px;
+        color: #003569;
+      }
+    }
+  }
+
+  .full-name-block{
+    display: inline;
+    //padding-right: 20px;
+    .name{
+      font-size: 15px;
+      padding-right: 20px;
+    }
+    .website{
+      color: #7f7f7f;
+      font-size: 15px;
+    }
+  }
+
+
+.user-blocks{
+  display: flex;
+  border-top: 1px solid #e0dede;
+  justify-content: center;
+  a.table{
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+    color: #b4b3b3;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  a.active{
+    border-top: 1px solid #262626;
+    color: #262626;
+  }
+}
+
+.image-user{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 20px;
+
+  .container{
+    width: 250px;
+    height: 250px;
+    margin: 10px;
+  }
+}
+
+.nav{
+  width: 220px;
+  border: 1px solid #dbdbdb;
+  color: #003569;
+
+}
+.tab-content{
+  color: #003569;
+  border: 1px solid #dbdbdb;
+  border-left:none;
+}
+
+.edit-field{
+  padding: 0px 0px 50px 10px;
+
+}
+
+.user-edit-label{
+  padding: 0 0px 0 0;
+  line-height: 22px;
+}

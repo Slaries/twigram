@@ -1,0 +1,54 @@
+<div class="row profile">
+  <div class="col-md-4 d-flex justify-content-center">
+    <%= image_tag "ava_default.png", style:"width: 130px;" %>
+  </div>
+
+  <div class="info col-md-8">
+    <div class="user-info-box">
+      <h2 class="username"><%= current_user.username %></h2>
+      <a class="btn btn-primary" <%= link_to 'Edit Profile', edit_user_path(current_user)  %>
+
+    </div>
+    <div class="posts-block d-flex">
+      <ul>
+<!--        <li><%#= @posts.count %> posts</li>-->
+        <li>1XX  followers</li>
+        <li>1XXX following</li>
+      </ul>
+    </div>
+
+    <div class="full-name-block d-flex">
+      <h2 class="name"><%= current_user.name %></h2>
+      <%=link_to current_user.website, current_user.website, class:  'website' %>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="user-blocks">
+    <a class="table active" href="#">
+      POSTS
+    </a>
+    <a class="table" href="#">
+      IGTV
+    </a>
+    <a class="table" href="#">
+      SAVED
+    </a>
+    <a class="table" href="#">
+      TAGGED
+    </a>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="row show-posts">
+        <%# @posts.each do |post|%>
+<!--          <div class="col-md-4">-->
+            <%#=link_to (image_tag post.image_url, width: '300'),  post_path(post) %>
+<!--            <%#= post.description %><br/>-->
+<!--          </div>-->
+        <%# end %>
+      </div>
+    </div>
+  </div>
+
+</div>
