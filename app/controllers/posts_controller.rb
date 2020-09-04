@@ -2,11 +2,11 @@ class PostsController < ApplicationController
   before_action :load_user
 
   def index
-    # @post = Post.all
+    @post = @user.posts
   end
 
   def show
-    # @post = Post.find(params[:id])
+    @post = @user.posts.find(params[:id])
   end
 
   def new
@@ -15,28 +15,32 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user = @user
+    if @post.valid?
+      @post.image_derivatives! if @post.image_changed?
+      @post.save
+    end
     if @post.save
-      flash.now[:success] = "Post added"
-      redirect_to user_path(current_user)
+      redirect_to user_post_path(@user,@post), flash: {success:"Post added"}
     else
-      render 'new'
+      render 'new', flash: {alert: "Some error"}
     end
 
   end
 
   def edit
-    # @post = Post.find(params[:id])
+    @post = @user.find(params[:id])
   end
 
   def update
-    # @post = Post.find(params[:id])
-    # if @post.update(postedit_params)
-    #   flash[:notice] = "Successfully updated post!"
-    #   redirect_to user_path(current_user)
-    # else
-    #   flash[:alert] = "Error updating post!"
-    #   render :edit
-    # end
+    @post = @user.posts.find(params[:id])
+     if @post.update(postedit_params)
+       flash[:notice] = "Successfully updated post!"
+       redirect_to user_post_path(@user)
+     else
+       flash[:alert] = "Error updating post!"
+       render :edit
+     end
 
   end
 
@@ -49,12 +53,12 @@ class PostsController < ApplicationController
   #     flash[:alert] = "Error updating post!"
   #   end
   end
-  # def postedit_params
-  #   params.require(:post).permit(:content, :user_id, :remove_image)
-  # end
-  #
+  def image_params
+    params.require(:post).permit(:content, :image, :remove_image)
+  end
+
   def post_params
-    params.require(:post).permit(:content,  :user_id)
+    params.require(:post).permit(:content, :image, :user_id)
   end
   def load_user
     @user = User.find(params[:user_id])
