@@ -1,22 +1,23 @@
-<%= form_for @post do |form| %>
 
-  <div class="field">
-    <%= form.label :content, 'Content' %>
-    <%= form.text_field :content, :size=>"30", :maxlength=>"100" %><br/>
-  </div>
-<!--  <div class="field">-->
-    <%#= form.hidden_field :image, value: @post.cached_image_data %>
-    <%#= form.file_field :image, value: @post.cached_image_data%>
-<!--  </div><br/>-->
-  <%# if @post.image_data? %>
+  <%= form_for [@user,@post] do |form| %>
 
-<!--    <%#= image_tag @post.image_url, width: '300' %><br/>-->
-<!--        Remove attachment: <%##= form.check_box :remove_image %>-->
-  <%# end %>
+    <div class="field"><br/>
+      <%= form.label :content, 'Content' %><br/>
+      <%= form.text_field :content, :size=>"30", :maxlength=>"100" %><br/>
+    </div>
+  <!--  <div class="field">-->
+      <%#= form.hidden_field :image, value: @post.cached_image_data %>
+      <%#= form.file_field :image, value: @post.cached_image_data%>
+  <!--  </div><br/>-->
+    <%# if @post.image_data? %>
 
-  <%= form.text_field :user_id, value: current_user.id, class:'d-none' %>
-  <div><br>
-    <%= form.submit 'Save Post', class: 'btn btn-primary' %>
-  </div>
+  <!--    <%#= image_tag @post.image_url, width: '300' %><br/>-->
+  <!--        Remove attachment: <%##= form.check_box :remove_image %>-->
+    <%# end %>
 
-<%end%>
+    <%= form.text_field :user_id, value: current_user.id, class:'d-none' %>
+    <div><br>
+      <%= form.submit 'Save Post', class: 'btn btn-primary' %>
+    </div>
+
+  <%end%>
