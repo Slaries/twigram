@@ -9,7 +9,7 @@
 
   <div class="info col-md-8">
     <div class="user-info-box">
-      <h2 class="username"><%= current_user.username %></h2>
+      <h2 class="username"><%= @user.username %></h2>
       <a class="btn btn-primary" <%= link_to 'Edit Profile', edit_user_path(current_user)  %>
 
     </div>
@@ -22,8 +22,8 @@
     </div>
 
     <div class="full-name-block d-flex">
-      <h2 class="name"><%= current_user.name %></h2>
-      <%=link_to current_user.website, current_user.website, class:  'website' %>
+      <h2 class="name"><%= @user.name %></h2>
+      <%= @user.website %>
     </div>
   </div>
 </div>
