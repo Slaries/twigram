@@ -1,23 +1,26 @@
+<div class="container" >
+  <div class="row justify-content-center">
+    <%= form_for [@user,@post] do |form| %>
 
-  <%= form_for [@user,@post] do |form| %>
+      <div class="field"><br/>
+        <%= form.label :content, 'Content' %><br/>
+        <%= form.text_field :content, size: "50x40" %><br/>
+      </div>
+      <div class="field">
+        <%= form.hidden_field :image, value: @post.cached_image_data %> <br/>
+        <%= form.file_field :image %>
+      </div><br/>
+      <% if @post.image_data? %>
 
-    <div class="field"><br/>
-      <%= form.label :content, 'Content' %><br/>
-      <%= form.text_field :content, size: "60x20" %><br/>
-    </div>
-    <div class="field">
-      <%= form.hidden_field :image, value: @post.cached_image_data %>
-      <%= form.file_field :image %>
-    </div><br/>
-    <% if @post.image_data? %>
+        <%= image_tag @post.image_url(:small) %><br/>
+        Remove attachment: <%= form.check_box :remove_image %>
+      <% end %>
 
-      <%= image_tag @post.image_url, width: '300' %><br/>
-          Remove attachment: <%#= form.check_box :remove_image %>
-    <% end %>
+      <%= form.text_field :user_id, value: @user.id, class:'d-none' %>
+      <div>
+        <%= form.submit 'Save Post', class: 'btn btn-primary' %>
+      </div>
 
-    <%= form.text_field :user_id, value: @user.id, class:'d-none' %>
-    <div><br>
-      <%= form.submit 'Save Post', class: 'btn btn-primary' %>
-    </div>
-
-  <%end%>
+    <%end%>
+  </div>
+</div>
