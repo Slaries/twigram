@@ -10,8 +10,9 @@
   <div class="info col-md-8">
     <div class="user-info-box">
       <h2 class="username"><%= @user.username %></h2>
-      <a class="btn btn-primary" <%= link_to 'Edit Profile', edit_user_path(current_user)  %>
-
+      <% if current_user == @user %>
+      <a class="btn btn-primary" <%= link_to 'Edit Profile', edit_user_path(@user)  %>
+      <% end %>
     </div>
     <div class="posts-block d-flex">
       <ul>
