@@ -1,13 +1,22 @@
 <div class="row container col-12 post-view-form">
   <div class="col-8">
+    <p class="level-item">
+      <% if current_user == @post.user %>
+        <%= link_to "Edit", edit_user_post_path(@user,@post), class:"button" %> |
 
+        <%= link_to "Delete", user_post_path(@user,@post),
+                    method: :delete, data: { confirm: "Are you sure?" }, class:"button is-danger" %>
+      <% end %>
+        <%= image_tag @post.image_url(:large) %><br/>
+
+    </p>
   </div>
 
   <div class="col-4 post-view-right">
-<!--    <b><%#= @post.user.username %></b>-->
-<!--    at <%#= @post.created_at %>-->
-<!--    write: <br/>-->
+    <b><%= @post.user.username %></b>
+    at <%= @post.created_at %>
+    write: <br/>
 
-<!--    <%#= @post.content %><br/>-->
+    <%= @post.content %><br/>
   </div>
 </div>

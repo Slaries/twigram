@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :load_user
 
   def index
-    @post = @user.posts
+    @posts = @user.posts
   end
 
   def show
@@ -29,14 +29,14 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = @user.find(params[:id])
+    @post = @user.posts.find(params[:id])
   end
 
   def update
     @post = @user.posts.find(params[:id])
-     if @post.update(postedit_params)
+     if @post.update(post_params)
        flash[:notice] = "Successfully updated post!"
-       redirect_to user_post_path(@user)
+       redirect_to user_post_path(@user,@post)
      else
        flash[:alert] = "Error updating post!"
        render :edit
@@ -45,13 +45,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
-  #   @post = Post.find(params[:id])
-  #   if @post.destroy
-  #     flash.now[:notice] = "Successfully deleted post!"
-  #     redirect_to user_path(current_user)
-  #   else
-  #     flash[:alert] = "Error updating post!"
-  #   end
+    @post = @user.posts.find(params[:id])
+    if @post.destroy
+      flash.now[:notice] = "Successfully deleted post!"
+      redirect_to user_path(current_user)
+    else
+      flash[:alert] = "Error updating post!"
+    end
   end
   def image_params
     params.require(:post).permit(:content, :image, :remove_image)
