@@ -2,12 +2,13 @@
   <div class="col-8">
     <p class="level-item">
       <% if current_user == @post.user %>
-        <%= link_to "Edit", edit_post_path(@user,@post), class:"button" %> |
+        <%= link_to "Edit", edit_user_post_path(@user,@post), class:"button" %> |
 
-        <%= link_to "Delete", user_post_path(@user, @post),
+        <%= link_to "Delete", user_post_path(@user,@post),
                     method: :delete, data: { confirm: "Are you sure?" }, class:"button is-danger" %>
-        <%= image_tag @post.image_url, width: '600' %><br/>
       <% end %>
+        <%= image_tag @post.image_url(:large) %><br/>
+
     </p>
   </div>
 

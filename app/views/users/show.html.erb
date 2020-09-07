@@ -1,25 +1,30 @@
 <div class="row profile">
   <div class="col-md-4 d-flex justify-content-center">
-    <%= image_tag "ava_default.png", style:"width: 130px;" %>
+    <% if @user.image_data? %>
+      <div scope="rower"> <%= image_tag @user.image_url, height: '100px'  %></div>
+    <% else %>
+      <th scope="row"><%= image_tag "ava_default.png", height: '100' %></th>
+    <% end %>
   </div>
 
   <div class="info col-md-8">
     <div class="user-info-box">
-      <h2 class="username"><%= current_user.username %></h2>
-      <a class="btn btn-primary" <%= link_to 'Edit Profile', edit_user_path(current_user)  %>
-
+      <h2 class="username"><%= @user.username %></h2>
+      <% if current_user == @user %>
+      <a class="btn btn-primary" <%= link_to 'Edit Profile', edit_user_path(@user)  %>
+      <% end %>
     </div>
     <div class="posts-block d-flex">
       <ul>
-<!--        <li><%#= @posts.count %> posts</li>-->
+        <li><%= @posts.count %> posts</li>
         <li>1XX  followers</li>
         <li>1XXX following</li>
       </ul>
     </div>
 
     <div class="full-name-block d-flex">
-      <h2 class="name"><%= current_user.name %></h2>
-      <%=link_to current_user.website, current_user.website, class:  'website' %>
+      <h2 class="name"><%= @user.name %></h2>
+      <%= @user.website %>
     </div>
   </div>
 </div>
@@ -41,12 +46,14 @@
   <div class="container">
     <div class="row">
       <div class="row show-posts">
-        <%# @posts.each do |post|%>
-<!--          <div class="col-md-4">-->
-            <%#=link_to (image_tag post.image_url, width: '300'),  post_path(post) %>
-<!--            <%#= post.description %><br/>-->
-<!--          </div>-->
-        <%# end %>
+        <% @posts.each do |post|%>
+          <div class="col-4">
+            <% if post.image_data? %>
+            <%=link_to (image_tag post.image_url(:small)), user_post_path(@user, @posts) %>
+            <% end %>
+            <%= post.content %><br/>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

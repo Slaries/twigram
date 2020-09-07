@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include ImageUploader::Attachment.new(:image)
   has_many :posts, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

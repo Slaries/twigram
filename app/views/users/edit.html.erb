@@ -4,7 +4,7 @@
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#edit-profile" role="tab" aria-controls="edit-profile" aria-selected="true">Edit Profile</a>
         <a class="nav-link" id="change-password-tab" data-toggle="pill" href="#change-password" role="tab" aria-controls="change-password" aria-selected="false"> Edit Password</a>
-        <a class="nav-link" id="email-&-sms-tab" data-toggle="pill" href="#email-&-sms" role="tab" aria-controls="email-&-sms" aria-selected="false">Email & SMS</a>
+        <a class="nav-link" id="change-avatar" data-toggle="pill" href="#change-avatar" role="tab" aria-controls="change-avatar" aria-selected="false">Change Avatar</a>
         <a class="nav-link" id="push-message-tab" data-toggle="pill" href="#push-message" role="tab" aria-controls="push-message" aria-selected="false">Push-message</a>
       </div>
     </div>
@@ -16,9 +16,13 @@
               <table class="table">
                 <tbody>
                 <tr>
-                  <th scope="row"><%= image_tag "ava_default.png", height: '100' %></th>
+                  <% if @user.image_data? %>
+                    <th scope="row"> <%= image_tag @user.image_url, height: '100'  %></th>
+                    <% else %>
+                    <th scope="row"><%= image_tag "ava_default.png", height: '100' %></th>
+                  <% end %>
                   <td><p class="username"><b><%=current_user.username %></b></p>
-                    <a class="change-photo" href="">Change Profile Photo</a>
+
                   </td>
                 </tr>
                 <tr>
@@ -50,6 +54,10 @@
                   <td><%= f.text_field :gender %></td>
                 </tr>
                 <tr>
+                  <th scope="row"><%= f.label :image%></th>
+                  <td><%= f.file_field :image %></td>
+                </tr>
+                <tr>
                   <td colspan="2"><%= f.submit "Save"%></td>
                 </tr>
                 </tbody>
@@ -61,8 +69,25 @@
         <div class="tab-pane fade" id="change-password" role="tabpanel" aria-labelledby="change-password-tab">
           <p><a class="btn" <%= link_to 'Edit Password', edit_user_password_path  %></p>
         </div>
-        <div class="tab-pane fade" id="email-&-sms" role="tabpanel" aria-labelledby="email-&-sms-tab">2</div>
-        <div class="tab-pane fade" id="push-message" role="tabpanel" aria-labelledby="push-message-tab">3</div>
+        <div class="tab-pane fade" id="change-avatar" role="tabpanel" aria-labelledby="change-avatar">
+          <p>
+         <% form_for @user do |form| %>
+          <% form.hidden_field :image, value: @user.cached_image_data%>
+          <% form.file_field :image %>
+          <% form.submit %>
+          <% end %>
+
+          </p>
+
+        </div>
+        <div class="tab-pane fade" id="push-message" role="tabpanel" aria-labelledby="push-message-tab">3
+
+          <% form_for @user do |f| %>
+            <%= f.hidden_field :image, value: @user.cached_image_data%>
+            <%= f.file_field :image %>
+            <%= f.submit %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

@@ -20,7 +20,10 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'pg'
 gem 'devise'
-
+gem "shrine", '~> 3.2'
+gem "image_processing", '~> 1.8' # for derivatives
+gem "mini_magick" # for derivatives
+gem "marcel", '~> 0.3' #need for Validate file type
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
