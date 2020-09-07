@@ -2,7 +2,11 @@ class PostsController < ApplicationController
   before_action :load_user
 
   def index
-    @posts = @user.posts
+
+    @posts = @user.posts.order(created_at: :desc)
+    @follower = @user.followers
+    @followings = @user.followings
+
   end
 
   def show

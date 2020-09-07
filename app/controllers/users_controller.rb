@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
+  before_action :load_user
   def show
-    @user = User.find(params[:id])
-    @posts = current_user.posts.order(created_at: :desc)
+    # @user = User.find(params[:id])
+    @posts = @user.posts.order(created_at: :desc)
+    @follower = @user.followers
+    @followings = @user.followings
   end
 
   def edit
@@ -22,6 +25,10 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(
         :username, :name, :website, :bio, :email, :phone, :gender, :image)
+  end
+
+  def load_user
+    @user = User.find(params[:id])
   end
 
 end
