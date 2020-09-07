@@ -60,6 +60,7 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:content, :image, :user_id)
   end
+
   def load_user
     @user = User.find(params[:user_id])
   end
