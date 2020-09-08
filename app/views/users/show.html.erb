@@ -21,10 +21,17 @@
     <div class="posts-block d-flex">
       <ul>
         <li><%= @posts.count %> posts</li>
-        <%# if @followers.count? %>
-<!--        <li><%#= @followers.count %> followers</li>-->
-          <%# end %>
-<!--        <li><%#= @following.count %> following</li>-->
+        <% if @user.followers.count.nil? %>
+          0 followers
+          <% else %>>
+        <li><%= @user.followers.count %> followers</li>
+
+        <% end %>
+        <% if @user.followings.count.nil? %>
+          0 following
+          <% else %>
+        <li><%= @user.followings.count %> following</li>
+        <% end %>
       </ul>
     </div>
 
