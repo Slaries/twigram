@@ -2,10 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .profile{
+  margin-left: auto;
+  .avatar{
+
+    .ava{
+      width: 120px;
+      height: 120px;
+      border-radius: 5%;
+      margin-left: auto;
+    }
   }
+}
+
   img {
     width: 100%;
-    border-radius: 30%;
+    border-radius: 5%;
   }
 
   .user-info-box{

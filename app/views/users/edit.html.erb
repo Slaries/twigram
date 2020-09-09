@@ -22,8 +22,11 @@
                     <th scope="row"><%= image_tag "ava_default.png", height: '100' %></th>
                   <% end %>
                   <td><p class="username"><b><%=current_user.username %></b></p>
-
                   </td>
+                </tr>
+                <tr>
+                  <th scope="row">Change Avatar: </th>
+                  <td><%= f.file_field :image %></td>
                 </tr>
                 <tr>
                   <th scope="row"><%= f.label :name %></th>
@@ -54,10 +57,6 @@
                   <td><%= f.text_field :gender %></td>
                 </tr>
                 <tr>
-                  <th scope="row"><%= f.label :image%></th>
-                  <td><%= f.file_field :image %></td>
-                </tr>
-                <tr>
                   <td colspan="2"><%= f.submit "Save"%></td>
                 </tr>
                 </tbody>
@@ -70,23 +69,10 @@
           <p><a class="btn" <%= link_to 'Edit Password', edit_user_password_path  %></p>
         </div>
         <div class="tab-pane fade" id="change-avatar" role="tabpanel" aria-labelledby="change-avatar">
-          <p>
-         <% form_for @user do |form| %>
-          <% form.hidden_field :image, value: @user.cached_image_data%>
-          <% form.file_field :image %>
-          <% form.submit %>
-          <% end %>
-
-          </p>
 
         </div>
         <div class="tab-pane fade" id="push-message" role="tabpanel" aria-labelledby="push-message-tab">3
 
-          <% form_for @user do |f| %>
-            <%= f.hidden_field :image, value: @user.cached_image_data%>
-            <%= f.file_field :image %>
-            <%= f.submit %>
-          <% end %>
         </div>
       </div>
     </div>
