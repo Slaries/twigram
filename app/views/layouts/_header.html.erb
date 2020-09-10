@@ -10,7 +10,8 @@
       </form>
       <ul class="navbar-nav mr-auto ml-md-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Explore</a>
+          <%= link_to "Feed", feed_posts_path(current_user), class: "nav-link" %>
+
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Notification</a>
