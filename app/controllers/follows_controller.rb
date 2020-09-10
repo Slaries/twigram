@@ -14,7 +14,7 @@ class FollowsController < ApplicationController
       @follow.save
     end
     if @follow.save
-      redirect_to user_followers_path(following_user), flash: {success:"You follow now"}
+      redirect_to user_path(following_user), flash: {success:"You follow now"}
     else
       redirect_to user_path(following_user), flash: {alert: "You already follow"}
     end
@@ -24,12 +24,12 @@ class FollowsController < ApplicationController
     follow = Follow.find_by(follower_id: current_user.id, following_id: params[:user_id])
     if follow.present?
       follow.destroy
-    end
    if follow.destroy
       flash.now[:notice] = "Successfully deleted follow!"
-      redirect_to user_path(current_user)
+      redirect_to user_path
     else
       flash[:alert] = "Error delete follow!"
+    end
     end
   end
 end

@@ -1,9 +1,16 @@
-<h1>Followers</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Followers</h1>
+      <ul>
+        <% @followers.each do |follower| %>
+          <li>
+            <%= link_to follower.name, user_path(follower) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<ul>
-  <% @followers.each do |follower| %>
-    <li>
-      <%= link_to follower.name, user_path(follower) %>
-    </li>
-    <% end %>
-    </ul>
+
