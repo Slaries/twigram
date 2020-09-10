@@ -7,10 +7,12 @@ class PostsController < ApplicationController
     @follower = @user.followers
     @followings = @user.followings
 
+
   end
 
   def show
     @post = @user.posts.find(params[:id])
+    @comment = Comment.new
   end
 
   def new
