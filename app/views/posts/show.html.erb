@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row col-12 post-view-form">
     <div class="col-8">
-      <p class="level-item">
+      <p class="left-item">
         <% if current_user == @post.user %>
           <%= link_to "Edit", edit_user_post_path(@user,@post), class:"button" %> |
 
           <%= link_to "Delete", user_post_path(@user,@post),
                       method: :delete, data: { confirm: "Are you sure?" }, class:"button is-danger" %>
         <% end %>
-          <%= image_tag @post.image_url(:large) %><br/>
+          <%= image_tag @post.image_url(:large)%><br/>
 
       </p>
       <div class="post-user-info">
