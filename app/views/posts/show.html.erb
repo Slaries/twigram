@@ -1,22 +1,43 @@
-<div class="row container col-12 post-view-form">
-  <div class="col-8">
-    <p class="level-item">
-      <% if current_user == @post.user %>
-        <%= link_to "Edit", edit_user_post_path(@user,@post), class:"button" %> |
+<div class="container">
+  <div class="row col-12 post-view-form">
+    <div class="col-8">
+      <p class="level-item">
+        <% if current_user == @post.user %>
+          <%= link_to "Edit", edit_user_post_path(@user,@post), class:"button" %> |
 
-        <%= link_to "Delete", user_post_path(@user,@post),
-                    method: :delete, data: { confirm: "Are you sure?" }, class:"button is-danger" %>
-      <% end %>
-        <%= image_tag @post.image_url(:large) %><br/>
+          <%= link_to "Delete", user_post_path(@user,@post),
+                      method: :delete, data: { confirm: "Are you sure?" }, class:"button is-danger" %>
+        <% end %>
+          <%= image_tag @post.image_url(:large) %><br/>
 
-    </p>
-  </div>
+      </p>
+      <div class="post-user-info">
+        <b><%= @post.user.username %></b> write: <br/>
+        <p class="create_data"> at <%= @post.created_at %></p>
+        <%= @post.content %><br/>
+      </div>
+    </div>
 
-  <div class="col-4 post-view-right">
-    <b><%= @post.user.username %></b>
-    at <%= @post.created_at %>
-    write: <br/>
+      <div class="post-view-right col-4">
+        <div class="show-comments">
+          <% if @post.comments.present? %>
+            <% @post.comments.each do |c| %>
+                  <p><b><%= c.user.username %> </b> :
+                  <%= c.context %></p>
+            <% end %>
+            <%else %>
+              No comment yet
+          <% end %>
 
-    <%= @post.content %><br/>
+          </div>
+        <div class="comment-input-form"><br/>
+          <%= form_for [@comment] do |form| %>
+            <%= form.text_field :context, placeholder: "write comment here", class:'input-field'%>
+            <%= form.text_field :user_id, value: @user.id, class:'d-none' %>
+            <%= form.text_field :post_id, value: @post.id, class:'d-none' %>
+            <%= form.submit 'Send', class: 'btn btn-primary' %>
+          <%end%>
+        </div>
+      </div>
   </div>
 </div>
