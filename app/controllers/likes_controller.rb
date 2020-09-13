@@ -4,7 +4,7 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(likes_params)
     if @like.save
-      redirect_to user_post_path(:user_id => @post.user_id,:post_id => @post.id)
+      redirect_to user_post_path(:user_id => @post.user_id,:id => @post.id)
     end
   end
 
