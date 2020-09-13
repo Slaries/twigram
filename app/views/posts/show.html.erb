@@ -12,6 +12,13 @@
 
       </p>
       <div class="post-user-info">
+        <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+        <%if is_like= Like.find_by(user_id: current_user.id, post_id: @post.id).present? %>
+          <%= link_to "UnLike", post_like_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-primary" %>
+        <% else %>
+          <%= button_to 'Like', post_likes_path(@post), method: :post %>
+       <% end %>
+
         <b><%= @post.user.username %></b> write: <br/>
         <p class="create_data"> at <%= @post.created_at %></p>
         <%= @post.content %><br/>
