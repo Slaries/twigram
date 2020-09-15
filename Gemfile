@@ -25,6 +25,8 @@ gem "image_processing", '~> 1.8' # for derivatives
 gem "mini_magick" # for derivatives
 gem "marcel", '~> 0.3' #need for Validate file type
 
+gem 'simplecov', require: false, group: :test
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password

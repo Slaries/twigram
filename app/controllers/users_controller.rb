@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start 'rails'
 class UsersController < ApplicationController
   before_action :load_user
   def show

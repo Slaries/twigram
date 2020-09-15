@@ -17,9 +17,9 @@
                 <tbody>
                 <tr>
                   <% if @user.image_data? %>
-                    <th scope="row"> <%= image_tag @user.image_url, height: '100'  %></th>
+                    <th scope="row"> <%= image_tag @user.image_url, class: 'ava-edit-page' %></th>
                     <% else %>
-                    <th scope="row"><%= image_tag "ava_default.png", height: '100' %></th>
+                    <th scope="row"><%= image_tag "ava_default.png", class: 'ava-edit-page'%></th>
                   <% end %>
                   <td><p class="username"><b><%=current_user.username %></b></p>
                   </td>
