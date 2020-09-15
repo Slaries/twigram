@@ -2,12 +2,9 @@ class PostsController < ApplicationController
   before_action :load_user
 
   def index
-
     @posts = @user.posts.order(created_at: :desc)
     @follower = @user.followers
     @followings = @user.followings
-
-
   end
 
   def show
@@ -27,11 +24,10 @@ class PostsController < ApplicationController
       @post.save
     end
     if @post.save
-      redirect_to user_post_path(@user,@post), flash: {success:"Post added"}
+      redirect_to user_post_path(@user, @post), flash: { success: 'Post added' }
     else
-      render 'new', flash: {alert: "Some error"}
+      render 'new', flash: { alert: 'Some error' }
     end
-
   end
 
   def edit
@@ -40,25 +36,26 @@ class PostsController < ApplicationController
 
   def update
     @post = @user.posts.find(params[:id])
-     if @post.update(post_params)
-       flash[:notice] = "Successfully updated post!"
-       redirect_to user_post_path(@user,@post)
-     else
-       flash[:alert] = "Error updating post!"
-       render :edit
-     end
-
+    if @post.update(post_params)
+      flash[:notice] = 'Successfully updated post!'
+      redirect_to user_post_path(@user, @post)
+    else
+      flash[:alert] = 'Error updating post!'
+      render :edit
+    end
   end
 
   def destroy
     @post = @user.posts.find(params[:id])
     if @post.destroy
-      flash.now[:notice] = "Successfully deleted post!"
+      flash.now[:notice] = 'Successfully deleted post!'
       redirect_to user_path(current_user)
     else
-      flash[:alert] = "Error updating post!"
+      flash[:alert] = 'Error updating post!'
     end
   end
+
+  private
   def image_params
     params.require(:post).permit(:content, :image, :remove_image)
   end
@@ -66,8 +63,8 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:content, :image, :user_id)
   end
+
   def load_user
     @user = User.find(params[:user_id])
   end
-
 end
