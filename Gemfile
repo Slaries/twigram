@@ -26,6 +26,8 @@ gem "mini_magick" # for derivatives
 gem "marcel", '~> 0.3' #need for Validate file type
 
 gem 'simplecov', require: false, group: :test
+gem 'factory_bot_rails'
+gem 'ffaker'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
