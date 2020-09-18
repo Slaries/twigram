@@ -26,9 +26,5 @@ RSpec.describe User, type: :model do
 
     it {expect(user1).to_not be_valid}
   end
-  it { is_expected.to have_many(:posts) }
-  it { is_expected.to have_many(:comments) }
-  it { is_expected.to have_many(:likes) }
-  it { is_expected.to validate_presence_of(:name) }
-  it { is_expected.to validate_presence_of(:email) }
+  it{ is_expected.to have_many(:posts) }
 end
