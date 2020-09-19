@@ -1,16 +1,14 @@
 require 'rails_helper'
 
-
 RSpec.describe 'Post page', :js, type: :feature do
   let!(:user) { create :user }
 
   scenario 'user creates post' do
     login_as user
 
-    visit new_post_url(user_id: user)
-    click_link 'Create Post'
+    visit new_user_post_url(user_id: user)
 
-    within 'form' do
+    within '.input-form' do
       attach_file Rails.root.join('spec/support/rspecimage.jpg')
       fill_in 'Content', with: "Some text here"
       click_button 'Save Post'
