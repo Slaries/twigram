@@ -23,7 +23,9 @@
           <div class="twitter-form center">
 
             <p>OR</p>
-            <p>Sign in with Facebook</p>
+            <p><%= link_to('/users/auth/facebook', {:class => "btn btn-primary"}) do %>
+                Facebook OAuth
+              <%- end %></p>
 
           </div>
           <div>
