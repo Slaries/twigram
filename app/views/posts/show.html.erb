@@ -4,13 +4,12 @@
       <p class="left-item">
         <% if current_user == @post.user %>
           <%= link_to "Edit", edit_user_post_path(@user,@post), class:"button" %> |
-
           <%= link_to "Delete", user_post_path(@user,@post),
                       method: :delete, data: { confirm: "Are you sure?" }, class:"button is-danger" %>
         <% end %>
           <%= image_tag @post.image_url(:large)%><br/>
-
       </p>
+
       <div class="post-user-info">
         <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%>
         <%if is_like= Like.find_by(user_id: current_user.id, post_id: @post.id).present? %>
@@ -35,8 +34,8 @@
             <%else %>
               No comment yet
           <% end %>
-
           </div>
+
         <div class="comment-input-form"><br/>
           <%= form_for [@comment] do |form| %>
             <%= form.text_field :context, placeholder: "write comment here", class:'input-field'%>

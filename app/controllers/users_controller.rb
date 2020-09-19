@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start 'rails'
 class UsersController < ApplicationController
   before_action :load_user
   def show
@@ -22,6 +24,7 @@ class UsersController < ApplicationController
     current_user.update(user_params)
     redirect_to edit_user_path(current_user)
   end
+  private
   def user_params
     params.require(:user).permit(
         :username, :name, :website, :bio, :email, :phone, :gender, :image)
@@ -30,5 +33,4 @@ class UsersController < ApplicationController
   def load_user
     @user = User.find(params[:id])
   end
-
 end

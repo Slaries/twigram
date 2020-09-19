@@ -4,7 +4,7 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(likes_params)
     if @like.save
-      redirect_to user_post_path(:user_id => @post.user_id,:id => @post.id)
+      redirect_to user_post_path(user_id: @post.user_id,id: @post.id)
     end
   end
 
@@ -13,10 +13,10 @@ class LikesController < ApplicationController
     if liked.present?
       liked.destroy
       if liked.destroy
-        flash.now[:notice] = "Successfully deleted Like!"
-        redirect_to user_post_path(:user_id => @post.user_id, post_id: @post.id)
+        flash.now[:notice] = 'Successfully deleted Like!'
+        redirect_to user_post_path(user_id: @post.user_id, post_id: @post.id)
       else
-        flash[:alert] = "Error delete Like!"
+        flash[:alert] = 'Error delete Like!'
       end
     end
   end
@@ -29,5 +29,4 @@ class LikesController < ApplicationController
   def find_post
     @post = Post.find(params[:post_id])
   end
-
 end

@@ -14,5 +14,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :name, presence: true, length: {maximum: 40}
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness:  { case_sensitive: false},
+            format: { with: URI::MailTo::EMAIL_REGEXP }
+
 end

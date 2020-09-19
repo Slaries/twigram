@@ -5,9 +5,9 @@ class ImageUploader < Shrine
   plugin :derivatives
   plugin :cached_attachment_data
   plugin :remove_attachment
-  plugin :validation_helpers
   plugin :determine_mime_type, analyzer: :marcel
   plugin :validation_helpers
+  plugin :default_url
 
   Attacher.validate do
     validate_extension %w[jpg jpeg png webp]
@@ -24,9 +24,8 @@ class ImageUploader < Shrine
     }
   end
 
-  Attacher.validate do
-    validate_max_size 1.megabytes, message: 'is too large (max is 1 MB)'
-    validate_mime_type_inclusion %w[image/jpeg image/jpg image/png image/gif]
+  Attacher.default_url do |**options|
+    "/placeholders/missing.jpg"
   end
 
 end

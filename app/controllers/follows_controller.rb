@@ -24,12 +24,12 @@ class FollowsController < ApplicationController
     follow = Follow.find_by(follower_id: current_user.id, following_id: params[:user_id])
     if follow.present?
       follow.destroy
-   if follow.destroy
-      flash.now[:notice] = "Successfully deleted follow!"
-      redirect_to user_path
-    else
-      flash[:alert] = "Error delete follow!"
-    end
+      if follow.destroy
+        flash.now[:notice] = "Successfully deleted follow!"
+        redirect_to user_path
+      else
+        flash[:alert] = "Error delete follow!"
+      end
     end
   end
 end
