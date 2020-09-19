@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) {User.new(email: 'user@user.com', username: 'user') }
+  let(:user) {User.new(email: 'user1@user.com', name: 'user1') }
   before{user.save}
 
   context 'validation test' do
     it 'ensure user preference' do
-      user = User.new(username: 'User', email: 'user@user.com')
+      user = User.new(name: 'user', email: 'user@user.com')
       expect(user).to_not be_valid
     end
 
@@ -26,5 +26,17 @@ RSpec.describe User, type: :model do
 
     it {expect(user1).to_not be_valid}
   end
-  it{ is_expected.to have_many(:posts) }
+
+  it { is_expected.to have_many(:posts) }
+  it { is_expected.to have_many(:likes) }
+  it { is_expected.to have_many(:comments) }
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_presence_of(:email) }
+  it { is_expected.to validate_uniqueness_of(:email).case_insensitive}
+
+  it { is_expected.to have_many(:follower_follows).with_foreign_key(:following_id).class_name('Follow') }
+  it { is_expected.to have_many(:followers).through(:follower_follows).source(:follower) }
+
+  it { is_expected.to have_many(:following_follows).with_foreign_key(:follower_id).class_name('Follow') }
+  it { is_expected.to have_many(:followings).through(:following_follows).source(:following) }
 end
