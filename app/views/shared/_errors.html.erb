@@ -1,8 +1,11 @@
-<% if object.errors.any? %>
-  <h3>The following errors were found:</h3>
-  <ul>
-    <% object.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="row justify-content-center">
+  <% if object.errors.any? %>
+    <h5>The following errors were found:</h5><br/>
+    <ul>
+      <% object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
