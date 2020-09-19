@@ -1,4 +1,4 @@
-require './spec/rails_helper'
+require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
   let(:user) { create :user }
@@ -34,7 +34,7 @@ RSpec.describe PostsController, type: :controller do
 
     context 'when user tries to see someone elses post' do
       let!(:post) { create :post}
-      it {expect { subject }. raise_error(ActiveRecord::RecordNotFound) }
+      it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
     end
   end
 
@@ -65,7 +65,7 @@ RSpec.describe PostsController, type: :controller do
 
     it 'create post' do
       expect { subject }.to change { Post.count }.by(1)
-      is_expected.to redirect_to(user_post_path(assigns(:user), assighs(:post)))
+      is_expected.to redirect_to(user_post_path(assigns(:user), assigns(:post)))
     end
 
     context 'when params invalid' do
@@ -116,7 +116,7 @@ RSpec.describe PostsController, type: :controller do
     let!(:post) { create :post, user: user }
     let(:params) { { id: post, user_id: user } }
 
-    subject { post :destroy, params: params}
+    subject { process :destroy, method: :delete, params: params}
 
     it 'delete post' do
       expect { subject }.to change { Post.count }.by(-1)

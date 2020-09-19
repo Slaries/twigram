@@ -16,8 +16,19 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'support/factory_bot'
 require 'ffaker'
-# Add additional requires below this line. Rails is not loaded until this point!
 
+# Add additional requires below this line. Rails is not loaded until this point!
+require 'factories/users'
+require 'factories/posts'
+require 'capybara/rails'
+require 'capybara/rspec'
+
+RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include Warden::Test::Helpers
+end
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
