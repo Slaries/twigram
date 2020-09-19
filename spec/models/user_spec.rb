@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec/rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) {User.new(email: 'user1@user.com', name: 'user1') }

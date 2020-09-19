@@ -1,4 +1,5 @@
 require 'factory_bot'
+require 'ffaker'
 
 FactoryBot.define do
   factory :post do
