@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     if @post.valid?
       @post.image_derivatives! if @post.image_changed?
       @post.save
-      redirect_to user_path(current_user)
+      redirect_to user_post_path(@user, @post)
     else
       render 'new', flash: { alert: 'Some error' }
     end
@@ -37,10 +37,8 @@ class PostsController < ApplicationController
     @post = @user.posts.find(params[:id])
     if @post.valid?
       @post.update(post_params)
-    #   flash[:notice] = 'Successfully updated post!'
       redirect_to user_post_path(@user, @post)
     else
-    #   flash[:alert] = 'Error updating post!'
       render 'edit'
     end
   end

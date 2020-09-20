@@ -18,8 +18,8 @@ require 'support/factory_bot'
 require 'ffaker'
 
 # Add additional requires below this line. Rails is not loaded until this point!
-require 'factories/users'
-require 'factories/posts'
+# require 'factories/users'
+# require 'factories/posts'
 require 'capybara/rails'
 require 'capybara/rspec'
 
