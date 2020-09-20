@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <% if object.errors.any? %>
-    <h5>The following errors were found:</h5><br/>
     <ul>
+      <h6>The following errors were found:</h6>
       <% object.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>

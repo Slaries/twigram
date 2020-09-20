@@ -7,7 +7,7 @@
           <%= form.text_area :content, size: "50x2", placeholder: 'Enter you describe, only 140 symbol' %><br/>
         </div>
         <div class="field">
-          <%= form.hidden_field :image, value: @post.cached_image_data %> <br/>
+          <%= form.hidden_field :image, value: @post.cached_image_data %>
           <%= form.file_field :image %>
         </div><br/>
         <% if @post.image_data? %>
