@@ -1,2 +1,18 @@
-<h1>Edit Photo</h1>
-<%= render 'form' %>
+<h3 class="row justify-content-center">Edit Post</h3>
+<%= render 'shared/errors', object: @post  %>
+<div class="container" >
+  <div class="row">
+    <div class="row input-form">
+      <%= form_for [@user,@post] do |form| %>
+        <div class="field"><br/>
+          <b><%= form.label :content, 'Content' %></b><br/>
+          <%= form.text_area :content, size: "50x2", placeholder: 'Enter you describe, only 140 symbol' %><br/>
+        </div>
+        <%= form.text_field :user_id, value: @user.id, class:'d-none' %>
+        <div>
+          <%= form.submit 'Save Post', class: 'btn btn-primary' %>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>

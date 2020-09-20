@@ -23,9 +23,7 @@ class PostsController < ApplicationController
     if @post.valid?
       @post.image_derivatives! if @post.image_changed?
       @post.save
-    end
-    if @post.save
-      redirect_to user_post_path(@user, @post), flash: { success: 'Post added' }
+      redirect_to user_path(current_user)
     else
       render 'new', flash: { alert: 'Some error' }
     end
@@ -37,12 +35,13 @@ class PostsController < ApplicationController
 
   def update
     @post = @user.posts.find(params[:id])
-    if @post.update(post_params)
-      flash[:notice] = 'Successfully updated post!'
+    if @post.valid?
+      @post.update(post_params)
+    #   flash[:notice] = 'Successfully updated post!'
       redirect_to user_post_path(@user, @post)
     else
-      flash[:alert] = 'Error updating post!'
-      render :edit
+    #   flash[:alert] = 'Error updating post!'
+      render 'edit'
     end
   end
 
@@ -57,10 +56,6 @@ class PostsController < ApplicationController
   end
 
   private
-  def image_params
-    params.require(:post).permit(:content, :image, :remove_image)
-  end
-
   def post_params
     params.require(:post).permit(:content, :image, :user_id)
   end

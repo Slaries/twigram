@@ -16,8 +16,8 @@
           <%= link_to "UnLike", post_like_path(user_id: current_user.id, post_id: @post.id), method: :delete %>
         <% else %>
           <%= link_to 'Like', post_likes_path(user_id: current_user.id, post_id: @post.id), method: :post %>
-       <% end %>
-        </p>
+       <% end %></p>
+
         <b><%= @post.user.username %></b> <p class="create_data"> at <%= @post.created_at %></p>
         write:
         <%= @post.content %>
@@ -38,7 +38,7 @@
 
         <div class="comment-input-form"><br/>
           <%= form_for [@comment] do |form| %>
-            <%= form.text_field :context, placeholder: "write comment here", class:'input-field'%>
+            <%= form.text_area :context, placeholder: "write comment here", class:'input-field'%>
             <%= form.text_field :user_id, value: @user.id, class:'d-none' %>
             <%= form.text_field :post_id, value: @post.id, class:'d-none' %>
             <%= form.submit 'Send', class: 'btn btn-primary' %>
