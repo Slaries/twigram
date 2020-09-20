@@ -59,11 +59,10 @@
     </a>
   </div>
 
-  <div class="container">
     <div class="row">
       <div class="row show-posts">
         <% @posts.each do |post|%>
-          <div class="col-4 ">
+          <div class="posts-in-wall col-4 ">
             <% if post.image_data? %>
             <%=link_to (image_tag post.image_url(:small)), user_post_path(@user,post) %>
             <% end %>
@@ -72,6 +71,5 @@
         <% end %>
       </div>
     </div>
-  </div>
 </div>
 </div>

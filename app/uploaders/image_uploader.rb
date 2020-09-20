@@ -4,10 +4,8 @@ class ImageUploader < Shrine
 
   plugin :derivatives
   plugin :cached_attachment_data
-  plugin :remove_attachment
   plugin :determine_mime_type, analyzer: :marcel
   plugin :validation_helpers
-  plugin :default_url
 
   Attacher.validate do
     validate_extension %w[jpg jpeg png webp]
@@ -23,9 +21,4 @@ class ImageUploader < Shrine
         large:  magick.resize_to_limit!(800, 800),
     }
   end
-
-  Attacher.default_url do |**options|
-    "/placeholders/missing.jpg"
-  end
-
 end
