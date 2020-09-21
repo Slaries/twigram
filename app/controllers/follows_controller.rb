@@ -25,7 +25,7 @@ class FollowsController < ApplicationController
         flash.now[:notice] = "Successfully deleted follow!"
         redirect_to user_path
     else
-        flash[:alert] = "Error delete follow!"
+      flash[:alert] = "Error delete follow!"
     end
   end
 end

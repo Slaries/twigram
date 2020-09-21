@@ -18,7 +18,7 @@
           <%= link_to 'Like', post_likes_path(user_id: current_user.id, post_id: @post.id), method: :post %>
        <% end %></p>
 
-        <b><%= @post.user.username %></b> <p class="create_data"> at <%= @post.created_at %></p>
+        <b><%= @post.user.name %></b> <p class="create_data"> at <%= @post.created_at %></p>
         write:
         <%= @post.content %>
       </div>
@@ -28,7 +28,7 @@
         <div class="show-comments">
           <% if @post.comments.present? %>
             <% @post.comments.each do |c| %>
-                  <p><b><%= c.user.username %> </b> :
+                  <p><b><%= c.user.name %> </b> :
                   <%= c.context %></p>
             <% end %>
             <%else %>
