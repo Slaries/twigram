@@ -2,7 +2,7 @@ class LikesController < ApplicationController
   before_action :authenticate_user!, :find_post
 
   def create
-    @like = Like.create(likes_params)
+    @like = Like.new(likes_params)
       if @like.save
         redirect_to user_post_path(user_id: @post.user_id, id: @post.id)
       end
