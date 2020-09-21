@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :load_user
+
   def show
     @posts = @user.posts.order(created_at: :desc)
     @follower = @user.followers
