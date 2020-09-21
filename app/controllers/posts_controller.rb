@@ -19,6 +19,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user = @user
     if @post.valid?
       @post.image_derivatives! if @post.image_changed?
       @post.save
