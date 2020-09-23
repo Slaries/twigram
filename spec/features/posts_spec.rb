@@ -8,7 +8,7 @@ RSpec.describe 'Post page', :js, type: :feature do
 
     visit new_user_post_url(user_id: user)
 
-    within '.input-form' do
+    within '.container' do
       attach_file Rails.root.join('spec/support/rspecimage.jpg')
       fill_in 'Content', with: "Some text here"
       click_button 'Save Post'
